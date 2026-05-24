@@ -353,7 +353,7 @@ async function loadData() {
   document.getElementById('last-updated').textContent = 'Actualizando...';
   try {
     const [leadsRes, convsRes] = await Promise.all([
-      db.from('crm_leads').select('*'),
+      db.from('usuarios_lucia_cr').select('*'),
       db.from('usuarios_lucia_cr').select('telefono', { count: 'exact', head: true }).gt('mensajes_hoy', 0)
     ]);
     if (leadsRes.error) throw leadsRes.error;
