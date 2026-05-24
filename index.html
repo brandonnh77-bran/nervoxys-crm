@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nervoxys CRM</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -14,9 +14,9 @@
   --text:#f0f6ff;--muted:#6a8aaa;
   --blue:#00aaff;--glow:#4cc6ff;
   --green:#00d084;--amber:#ffaa00;--red:#ff4466;--purple:#9966ff;
-  --mono:'DM Mono',monospace;--sans:'Syne',sans-serif;
+  --mono:'DM Mono',monospace;--serif:'Cormorant Garamond',Georgia,serif;
 }
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans)}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--serif);font-weight:300}
 
 /* LOGIN */
 #login-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:1000;flex-direction:column;gap:2rem}
@@ -43,7 +43,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(2,4,8,0.92);backdrop-fi
 
 main{padding:2rem;max-width:1400px;margin:0 auto}
 .page-title{font-size:1.75rem;font-weight:600;margin-bottom:.25rem}
-.page-sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:2.5rem}
+.page-sub{font-family:var(--serif);font-size:1.05rem;color:var(--muted);margin-bottom:2.5rem}
 
 /* METRICS */
 .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:2rem}
@@ -55,7 +55,7 @@ main{padding:2rem;max-width:1400px;margin:0 auto}
 .metric.purple::before{background:var(--purple)}
 .metric.glow::before{background:var(--glow)}
 .metric-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
-.metric-value{font-size:2.25rem;font-weight:700;letter-spacing:-.02em;line-height:1}
+.metric-value{font-family:var(--mono);font-size:2.25rem;font-weight:400;letter-spacing:-.02em;line-height:1}
 .metric.blue .metric-value{color:var(--blue)}
 .metric.green .metric-value{color:var(--green)}
 .metric.amber .metric-value{color:var(--amber)}
@@ -67,7 +67,7 @@ main{padding:2rem;max-width:1400px;margin:0 auto}
 .format-breakdown{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
 .fmt-row{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem}
 .fmt-name{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.fmt-count{font-family:var(--sans);font-size:1.35rem;font-weight:700;color:var(--glow);line-height:1;letter-spacing:-.02em}
+.fmt-count{font-family:var(--mono);font-size:1.35rem;font-weight:400;color:var(--glow);line-height:1;letter-spacing:-.02em}
 .fmt-total{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem;margin-top:.4rem;padding-top:.5rem;border-top:1px solid var(--border)}
 .fmt-total .fmt-name{color:var(--text)}
 .fmt-total .fmt-count{font-size:1rem;color:var(--text)}
