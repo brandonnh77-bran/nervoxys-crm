@@ -46,13 +46,12 @@ main{padding:2rem;max-width:1400px;margin:0 auto}
 .page-sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:2.5rem}
 
 /* METRICS */
-.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:2rem}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:2rem}
 .metric{background:var(--bg);padding:1.5rem;position:relative;overflow:hidden}
 .metric::before{content:'';position:absolute;top:0;left:0;right:0;height:1px}
 .metric.blue::before{background:var(--blue)}
 .metric.green::before{background:var(--green)}
 .metric.amber::before{background:var(--amber)}
-.metric.red::before{background:var(--red)}
 .metric.purple::before{background:var(--purple)}
 .metric.glow::before{background:var(--glow)}
 .metric-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
@@ -60,67 +59,38 @@ main{padding:2rem;max-width:1400px;margin:0 auto}
 .metric.blue .metric-value{color:var(--blue)}
 .metric.green .metric-value{color:var(--green)}
 .metric.amber .metric-value{color:var(--amber)}
-.metric.red .metric-value{color:var(--red)}
 .metric.purple .metric-value{color:var(--purple)}
 .metric.glow .metric-value{color:var(--glow)}
 .metric-sub{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:.5rem}
 
-/* CHARTS ROW */
-.charts-row{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
-.chart-card{background:var(--bg2);border:1px solid var(--border);padding:1.5rem}
-.card-title{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--glow);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
-.card-title::before{content:'';width:20px;height:1px;background:var(--glow)}
-
-/* PLAN BREAKDOWN (dentro de tarjeta métrica) */
-.plan-breakdown{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
-.plan-row{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem}
-.plan-name{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.plan-count{font-family:var(--sans);font-size:1.35rem;font-weight:700;color:var(--green);line-height:1;letter-spacing:-.02em}
-.plan-total{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem;margin-top:.4rem;padding-top:.5rem;border-top:1px solid var(--border)}
-.plan-total .plan-name{color:var(--text)}
-.plan-total .plan-count{font-size:1rem;color:var(--text)}
-
-/* ESTADO PIE */
-.estado-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.estado-item{background:var(--bg3);border:1px solid var(--border);padding:1rem;display:flex;align-items:center;gap:.75rem}
-.estado-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.estado-info{flex:1}
-.estado-name{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
-.estado-val{font-size:1.25rem;font-weight:600}
+/* FORMAT BREAKDOWN */
+.format-breakdown{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
+.fmt-row{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem}
+.fmt-name{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fmt-count{font-family:var(--sans);font-size:1.35rem;font-weight:700;color:var(--glow);line-height:1;letter-spacing:-.02em}
+.fmt-total{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem;margin-top:.4rem;padding-top:.5rem;border-top:1px solid var(--border)}
+.fmt-total .fmt-name{color:var(--text)}
+.fmt-total .fmt-count{font-size:1rem;color:var(--text)}
 
 /* TABLE */
 .table-card{background:var(--bg2);border:1px solid var(--border);padding:1.5rem;margin-bottom:2rem}
 .table-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
-.filter-group{display:flex;gap:.5rem}
-.filter-btn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .9rem;background:transparent;color:var(--muted);border:1px solid var(--border);cursor:pointer;transition:all .2s}
-.filter-btn.active,.filter-btn:hover{color:var(--blue);border-color:var(--blue);background:rgba(0,170,255,.05)}
+.table-count{font-family:var(--mono);font-size:10px;color:var(--muted)}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
-th{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+th{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
 td{font-family:var(--mono);font-size:11px;color:var(--text);padding:.85rem 1rem;border-bottom:1px solid rgba(0,170,255,.05)}
 tr:hover td{background:rgba(0,170,255,.03)}
 .badge{display:inline-block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:2px}
-.badge.activo{background:rgba(0,208,132,.1);color:var(--green);border:1px solid rgba(0,208,132,.2)}
-.badge.en_trial{background:rgba(0,170,255,.1);color:var(--blue);border:1px solid rgba(0,170,255,.2)}
-.badge.expirado{background:rgba(255,170,0,.1);color:var(--amber);border:1px solid rgba(255,170,0,.2)}
-.badge.churned{background:rgba(255,68,102,.1);color:var(--red);border:1px solid rgba(255,68,102,.2)}
-.badge.free{background:rgba(106,138,170,.1);color:var(--muted);border:1px solid rgba(106,138,170,.2)}
-.badge.wa{background:rgba(0,170,255,.08);color:var(--glow)}
-.badge.tg{background:rgba(153,102,255,.08);color:var(--purple)}
+.badge.completo{background:rgba(0,208,132,.1);color:var(--green);border:1px solid rgba(0,208,132,.2)}
+.badge.nombre{background:rgba(0,170,255,.1);color:var(--blue);border:1px solid rgba(0,170,255,.2)}
+.badge.tono{background:rgba(255,170,0,.1);color:var(--amber);border:1px solid rgba(255,170,0,.2)}
+.badge.intereses{background:rgba(153,102,255,.1);color:var(--purple);border:1px solid rgba(153,102,255,.2)}
+.badge.formato{background:rgba(0,170,255,.08);color:var(--glow);border:1px solid rgba(0,170,255,.15)}
 .empty-state{text-align:center;padding:3rem;font-family:var(--mono);font-size:12px;color:var(--muted)}
-
-/* CONVERSION */
-.conv-card{background:var(--bg2);border:1px solid var(--border);padding:1.5rem;margin-bottom:2rem}
-.conv-row{display:flex;align-items:center;gap:1rem;padding:.75rem 0;border-bottom:1px solid rgba(0,170,255,.05)}
-.conv-row:last-child{border-bottom:none}
-.conv-step{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);width:120px;flex-shrink:0}
-.conv-bar-wrap{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden}
-.conv-bar-fill{height:100%;background:linear-gradient(90deg,#00aaff,#4cc6ff);border-radius:4px;transition:width .8s ease}
-.conv-pct{font-family:var(--mono);font-size:11px;color:var(--text);width:50px;text-align:right;flex-shrink:0}
 
 .refresh-btn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--border);padding:.4rem .9rem;cursor:pointer;transition:color .2s,border-color .2s}
 .refresh-btn:hover{color:var(--blue);border-color:var(--blue)}
-.loading{opacity:.5;font-family:var(--mono);font-size:11px;color:var(--muted)}
 
 @media(max-width:768px){
   .metrics{grid-template-columns:1fr 1fr}
@@ -160,148 +130,78 @@ tr:hover td{background:rgba(0,170,255,.03)}
     <!-- METRICS -->
     <div class="metrics">
       <div class="metric blue">
-        <div class="metric-label">Total leads</div>
+        <div class="metric-label">Total usuarios</div>
         <div class="metric-value" id="m-total">—</div>
-        <div class="metric-sub">todos los canales</div>
+        <div class="metric-sub">registrados en el sistema</div>
       </div>
       <div class="metric glow">
-        <div class="metric-label">Conversaciones hoy</div>
-        <div class="metric-value" id="m-convs-hoy">—</div>
-        <div class="metric-sub">usuarios con mensajes</div>
+        <div class="metric-label">Activos hoy</div>
+        <div class="metric-value" id="m-activos-hoy">—</div>
+        <div class="metric-sub">escribieron hoy</div>
       </div>
       <div class="metric green">
-        <div class="metric-label">Clientes activos</div>
-        <div class="plan-breakdown">
-          <div class="plan-row">
-            <span class="plan-name">Básico</span>
-            <span class="plan-count" id="m-plan-basico">—</span>
-          </div>
-          <div class="plan-row">
-            <span class="plan-name">Lucía</span>
-            <span class="plan-count" id="m-plan-lucia">—</span>
-          </div>
-          <div class="plan-row">
-            <span class="plan-name">VIP</span>
-            <span class="plan-count" id="m-plan-vip">—</span>
-          </div>
-          <div class="plan-total">
-            <span class="plan-name">Total · pagando ahora</span>
-            <span class="plan-count" id="m-activos">—</span>
-          </div>
-        </div>
-      </div>
-      <div class="metric glow">
-        <div class="metric-label">En trial</div>
-        <div class="metric-value" id="m-trial">—</div>
-        <div class="metric-sub">3 días gratis</div>
-      </div>
-      <div class="metric amber">
-        <div class="metric-label">Expirados</div>
-        <div class="metric-value" id="m-expirados">—</div>
-        <div class="metric-sub">sin convertir</div>
-      </div>
-      <div class="metric red">
-        <div class="metric-label">Churned</div>
-        <div class="metric-value" id="m-churned">—</div>
-        <div class="metric-sub">cancelaron</div>
+        <div class="metric-label">Onboarding completo</div>
+        <div class="metric-value" id="m-onboarding">—</div>
+        <div class="metric-sub">step 3 o superior</div>
       </div>
       <div class="metric purple">
-        <div class="metric-label">Conversión</div>
-        <div class="metric-value" id="m-conv">—</div>
-        <div class="metric-sub">trial → pago</div>
+        <div class="metric-label">Usan audio</div>
+        <div class="metric-value" id="m-audio">—</div>
+        <div class="metric-sub">envían o reciben audio</div>
       </div>
-    </div>
-
-    <!-- CHARTS -->
-    <div class="charts-row">
-      <div class="chart-card">
-        <div class="card-title">Estado de leads</div>
-        <div class="estado-grid">
-          <div class="estado-item">
-            <div class="estado-dot" style="background:var(--green)"></div>
-            <div class="estado-info">
-              <div class="estado-name">Activos</div>
-              <div class="estado-val" id="e-activo" style="color:var(--green)">—</div>
-            </div>
+      <div class="metric amber">
+        <div class="metric-label">Mensajes totales</div>
+        <div class="metric-value" id="m-msgs">—</div>
+        <div class="metric-sub">suma acumulada</div>
+      </div>
+      <div class="metric glow">
+        <div class="metric-label">Formato preferido</div>
+        <div class="format-breakdown">
+          <div class="fmt-row">
+            <span class="fmt-name">Audio</span>
+            <span class="fmt-count" id="m-fmt-audio">—</span>
           </div>
-          <div class="estado-item">
-            <div class="estado-dot" style="background:var(--blue)"></div>
-            <div class="estado-info">
-              <div class="estado-name">En trial</div>
-              <div class="estado-val" id="e-trial" style="color:var(--blue)">—</div>
-            </div>
+          <div class="fmt-row">
+            <span class="fmt-name">Texto</span>
+            <span class="fmt-count" id="m-fmt-texto">—</span>
           </div>
-          <div class="estado-item">
-            <div class="estado-dot" style="background:var(--amber)"></div>
-            <div class="estado-info">
-              <div class="estado-name">Expirados</div>
-              <div class="estado-val" id="e-exp" style="color:var(--amber)">—</div>
-            </div>
+          <div class="fmt-row">
+            <span class="fmt-name">Auto</span>
+            <span class="fmt-count" id="m-fmt-auto">—</span>
           </div>
-          <div class="estado-item">
-            <div class="estado-dot" style="background:var(--red)"></div>
-            <div class="estado-info">
-              <div class="estado-name">Churned</div>
-              <div class="estado-val" id="e-churn" style="color:var(--red)">—</div>
-            </div>
+          <div class="fmt-total">
+            <span class="fmt-name">Total</span>
+            <span class="fmt-count" id="m-fmt-total">—</span>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- FUNNEL -->
-    <div class="conv-card">
-      <div class="card-title">Embudo de conversión</div>
-      <div class="conv-row">
-        <div class="conv-step">Total leads</div>
-        <div class="conv-bar-wrap"><div class="conv-bar-fill" id="f-total" style="width:100%"></div></div>
-        <div class="conv-pct" id="fp-total">—</div>
-      </div>
-      <div class="conv-row">
-        <div class="conv-step">Completaron trial</div>
-        <div class="conv-bar-wrap"><div class="conv-bar-fill" id="f-comp" style="width:0%"></div></div>
-        <div class="conv-pct" id="fp-comp">—</div>
-      </div>
-      <div class="conv-row">
-        <div class="conv-step">Convirtieron</div>
-        <div class="conv-bar-wrap"><div class="conv-bar-fill" id="f-conv" style="width:0%;background:linear-gradient(90deg,#00d084,#4cc6ff)"></div></div>
-        <div class="conv-pct" id="fp-conv">—</div>
-      </div>
-      <div class="conv-row">
-        <div class="conv-step">Retención</div>
-        <div class="conv-bar-wrap"><div class="conv-bar-fill" id="f-ret" style="width:0%;background:linear-gradient(90deg,#9966ff,#00aaff)"></div></div>
-        <div class="conv-pct" id="fp-ret">—</div>
       </div>
     </div>
 
     <!-- TABLE -->
     <div class="table-card">
       <div class="table-header">
-        <div class="card-title" style="margin-bottom:0">Todos los leads</div>
-        <div class="filter-group">
-          <button class="filter-btn active" onclick="filterTable('todos',this)">Todos</button>
-          <button class="filter-btn" onclick="filterTable('activo',this)">Activos</button>
-          <button class="filter-btn" onclick="filterTable('en_trial',this)">Trial</button>
-          <button class="filter-btn" onclick="filterTable('expirado',this)">Expirados</button>
-          <button class="filter-btn" onclick="filterTable('churned',this)">Churned</button>
+        <div class="card-title" style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--glow);display:flex;align-items:center;gap:.75rem;margin-bottom:0">
+          <span style="width:20px;height:1px;background:var(--glow);display:inline-block"></span>
+          Todos los usuarios
         </div>
+        <div class="table-count" id="table-count">—</div>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Teléfono / ID</th>
-              <th>Canal</th>
-              <th>Plan</th>
-              <th>Estado</th>
-              <th>Trial inicio</th>
-              <th>Trial expira</th>
-              <th>Conversión</th>
-              <th>Días hasta conv.</th>
-              <th>Días como cliente</th>
+              <th>Teléfono</th>
+              <th>Nombre</th>
+              <th>Tono</th>
+              <th>Msgs totales</th>
+              <th>Audios hoy</th>
+              <th>Onboarding</th>
+              <th>Formato</th>
+              <th>Última actividad</th>
+              <th>Registro</th>
             </tr>
           </thead>
-          <tbody id="leads-table">
+          <tbody id="users-table">
             <tr><td colspan="9" class="empty-state">Cargando...</td></tr>
           </tbody>
         </table>
@@ -318,8 +218,10 @@ const PASSWORD = 'nervoxys2024';
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-let allLeads = [];
-let currentFilter = 'todos';
+const ONBOARDING_LABELS = {0:'Completo',1:'Nombre',2:'Tono',3:'Intereses'};
+const ONBOARDING_CLASS = {0:'completo',1:'nombre',2:'tono',3:'intereses'};
+
+let allUsers = [];
 
 function doLogin() {
   const pwd = document.getElementById('pwd-input').value;
@@ -349,114 +251,83 @@ function startClock() {
   }, 1000);
 }
 
+function todayStart() {
+  const d = new Date();
+  d.setHours(0,0,0,0);
+  return d.toISOString();
+}
+
 async function loadData() {
   document.getElementById('last-updated').textContent = 'Actualizando...';
   try {
-    const [leadsRes, convsRes] = await Promise.all([
-      db.from('usuarios_lucia_cr').select('*'),
-      db.from('usuarios_lucia_cr').select('telefono', { count: 'exact', head: true }).gt('mensajes_hoy', 0)
-    ]);
-    if (leadsRes.error) throw leadsRes.error;
-    if (convsRes.error) throw convsRes.error;
-    allLeads = leadsRes.data || [];
-    document.getElementById('m-convs-hoy').textContent = convsRes.count ?? 0;
-    renderMetrics(allLeads);
-    renderEstados(allLeads);
-    renderFunnel(allLeads);
-    renderTable(allLeads, currentFilter);
+    const { data, error } = await db.from('usuarios_lucia_cr').select('*');
+    if (error) throw error;
+    allUsers = data || [];
+    renderMetrics(allUsers);
+    renderTable(allUsers);
     document.getElementById('last-updated').textContent =
       'Última actualización: ' + new Date().toLocaleString('es-MX');
   } catch(e) {
-    document.getElementById('last-updated').textContent = 'Error al cargar datos: ' + e.message;
+    document.getElementById('last-updated').textContent = 'Error al cargar: ' + e.message;
   }
 }
 
 function renderMetrics(data) {
   const total = data.length;
-  const activosList = data.filter(d => d.estado === 'activo');
-  const activos = activosList.length;
-  const planBasico = activosList.filter(d => d.plan === 'basico').length;
-  const planLucia = activosList.filter(d => d.plan === 'lucia').length;
-  const planVip = activosList.filter(d => d.plan === 'vip').length;
-  const trial = data.filter(d => d.estado === 'en_trial').length;
-  const expirados = data.filter(d => d.estado === 'expirado').length;
-  const churned = data.filter(d => d.estado === 'churned').length;
-  const convertidos = data.filter(d => d.converted_at).length;
-  const trialsCompletos = data.filter(d => d.trial_started_at).length;
-  const convRate = trialsCompletos > 0 ? Math.round((convertidos / trialsCompletos) * 100) : 0;
+  const hoy = todayStart();
+
+  const activosHoy = data.filter(d => d.updated_at >= hoy).length;
+  const onboardingOk = data.filter(d => (d.onboarding_step || 0) >= 3 || d.onboarding_step === 0).length;
+  const usanAudio = data.filter(d => (d.audios_hoy || 0) > 0 || (d.audios_entrada_hoy || 0) > 0).length;
+  const msgsTotal = data.reduce((sum, d) => sum + (d.mensajes_total || 0), 0);
+
+  const fmtAuto = data.filter(d => (d.formato || 'auto') === 'auto').length;
+  const fmtTexto = data.filter(d => d.formato === 'texto').length;
+  const fmtAudio = data.filter(d => d.formato === 'audio').length;
 
   document.getElementById('m-total').textContent = total;
-  document.getElementById('m-activos').textContent = activos;
-  document.getElementById('m-plan-basico').textContent = planBasico;
-  document.getElementById('m-plan-lucia').textContent = planLucia;
-  document.getElementById('m-plan-vip').textContent = planVip;
-  document.getElementById('m-trial').textContent = trial;
-  document.getElementById('m-expirados').textContent = expirados;
-  document.getElementById('m-churned').textContent = churned;
-  document.getElementById('m-conv').textContent = convRate + '%';
+  document.getElementById('m-activos-hoy').textContent = activosHoy;
+  document.getElementById('m-onboarding').textContent = onboardingOk;
+  document.getElementById('m-audio').textContent = usanAudio;
+  document.getElementById('m-msgs').textContent = msgsTotal.toLocaleString('es-MX');
+  document.getElementById('m-fmt-audio').textContent = fmtAudio;
+  document.getElementById('m-fmt-texto').textContent = fmtTexto;
+  document.getElementById('m-fmt-auto').textContent = fmtAuto;
+  document.getElementById('m-fmt-total').textContent = total;
 }
 
-function renderEstados(data) {
-  document.getElementById('e-activo').textContent = data.filter(d=>d.estado==='activo').length;
-  document.getElementById('e-trial').textContent = data.filter(d=>d.estado==='en_trial').length;
-  document.getElementById('e-exp').textContent = data.filter(d=>d.estado==='expirado').length;
-  document.getElementById('e-churn').textContent = data.filter(d=>d.estado==='churned').length;
-}
+function renderTable(data) {
+  const tbody = document.getElementById('users-table');
+  document.getElementById('table-count').textContent = data.length + ' usuarios';
 
-function renderFunnel(data) {
-  const total = data.length || 1;
-  const conTrials = data.filter(d => d.trial_started_at).length;
-  const convertidos = data.filter(d => d.converted_at).length;
-  const retenidos = data.filter(d => d.estado === 'activo').length;
-
-  document.getElementById('fp-total').textContent = total;
-  document.getElementById('fp-comp').textContent = conTrials;
-  document.getElementById('fp-conv').textContent = convertidos;
-  document.getElementById('fp-ret').textContent = retenidos;
-
-  setTimeout(() => {
-    document.getElementById('f-comp').style.width = Math.round((conTrials/total)*100) + '%';
-    document.getElementById('f-conv').style.width = Math.round((convertidos/total)*100) + '%';
-    document.getElementById('f-ret').style.width = Math.round((retenidos/total)*100) + '%';
-  }, 100);
-}
-
-function renderTable(data, filter) {
-  const filtered = filter === 'todos' ? data : data.filter(d => d.estado === filter);
-  const tbody = document.getElementById('leads-table');
-
-  if (filtered.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="9" class="empty-state">No hay leads en esta categoría</td></tr>';
+  if (data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="9" class="empty-state">No hay usuarios registrados</td></tr>';
     return;
   }
 
-  tbody.innerHTML = filtered.map(d => {
-    const fmt = (dt) => dt ? new Date(dt).toLocaleDateString('es-MX', {day:'2-digit',month:'short',year:'2-digit'}) : '—';
-    const canal = d.canal === 'telegram' ? '<span class="badge tg">Telegram</span>' : '<span class="badge wa">WhatsApp</span>';
-    const estado = `<span class="badge ${d.estado}">${d.estado}</span>`;
-    const dias_conv = d.dias_hasta_conversion !== null ? Math.round(d.dias_hasta_conversion) + 'd' : '—';
-    const dias_cli = d.dias_como_cliente !== null ? Math.round(d.dias_como_cliente) + 'd' : '—';
-    const tel = d.telefono ? d.telefono.toString().slice(-8) + '...' : '—';
+  tbody.innerHTML = data.map(d => {
+    const fmt = (dt) => dt ? new Date(dt).toLocaleDateString('es-MX', {day:'2-digit',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'}) : '—';
+    const fmtShort = (dt) => dt ? new Date(dt).toLocaleDateString('es-MX', {day:'2-digit',month:'short'}) : '—';
+    const tel = d.telefono ? '⋯' + d.telefono.toString().slice(-6) : '—';
+    const nombre = (d.perfil && d.perfil.nombre) ? d.perfil.nombre : '—';
+    const tono = (d.perfil && d.perfil.tono) ? d.perfil.tono : '—';
+    const step = d.onboarding_step ?? 0;
+    const stepLabel = ONBOARDING_LABELS[step] || step;
+    const stepClass = ONBOARDING_CLASS[step] || '';
+    const formato = d.formato || 'auto';
 
     return `<tr>
-      <td style="font-size:10px">${tel}</td>
-      <td>${canal}</td>
-      <td style="text-transform:uppercase;font-size:10px">${d.plan || '—'}</td>
-      <td>${estado}</td>
-      <td>${fmt(d.trial_started_at)}</td>
-      <td>${fmt(d.trial_expires_at)}</td>
-      <td>${fmt(d.converted_at)}</td>
-      <td style="text-align:center">${dias_conv}</td>
-      <td style="text-align:center">${dias_cli}</td>
+      <td>${tel}</td>
+      <td>${nombre}</td>
+      <td style="font-size:10px;color:var(--muted)">${tono}</td>
+      <td style="text-align:center">${d.mensajes_total || 0}</td>
+      <td style="text-align:center">${d.audios_hoy || 0}</td>
+      <td><span class="badge ${stepClass}">${stepLabel}</span></td>
+      <td><span class="badge formato">${formato}</span></td>
+      <td style="font-size:10px">${fmtShort(d.updated_at)}</td>
+      <td style="font-size:10px">${fmtShort(d.created_at)}</td>
     </tr>`;
   }).join('');
-}
-
-function filterTable(filter, btn) {
-  currentFilter = filter;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderTable(allLeads, filter);
 }
 
 // Auto refresh cada 60s
