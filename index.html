@@ -92,6 +92,12 @@ tr:hover td{background:rgba(0,170,255,.03)}
 .refresh-btn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--border);padding:.4rem .9rem;cursor:pointer;transition:color .2s,border-color .2s}
 .refresh-btn:hover{color:var(--blue);border-color:var(--blue)}
 
+/* TABS */
+.tabs{display:flex;gap:0;border-left:1px solid var(--border)}
+.tab{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-right:1px solid var(--border);padding:.5rem 1.2rem;cursor:pointer;transition:color .2s,background .2s}
+.tab:hover{color:var(--blue)}
+.tab.active{color:var(--glow);background:rgba(0,170,255,.06)}
+
 @media(max-width:768px){
   .metrics{grid-template-columns:1fr 1fr}
   main{padding:1rem}
@@ -116,6 +122,10 @@ tr:hover td{background:rgba(0,170,255,.03)}
 <div id="app">
   <header>
     <div class="header-logo">NERVOXYS<span>.</span>STUDIO — <span style="color:var(--muted)">CRM</span></div>
+    <nav class="tabs">
+      <button class="tab active" onclick="switchTab('lucia')" id="tab-lucia">Lucía CR</button>
+      <button class="tab" onclick="switchTab('fernanda')" id="tab-fernanda">Fernanda · Leads</button>
+    </nav>
     <div class="header-right">
       <div class="header-time" id="clock"></div>
       <button class="refresh-btn" onclick="loadData()">↻ Actualizar</button>
@@ -123,7 +133,7 @@ tr:hover td{background:rgba(0,170,255,.03)}
     </div>
   </header>
 
-  <main>
+  <main id="view-lucia">
     <div class="page-title">Dashboard</div>
     <div class="page-sub" id="last-updated">Cargando datos...</div>
 
@@ -207,6 +217,73 @@ tr:hover td{background:rgba(0,170,255,.03)}
         </table>
       </div>
     </div>
+  </main>
+
+  <!-- FERNANDA LEADS VIEW -->
+  <main id="view-fernanda" style="display:none;padding:2rem;max-width:1400px;margin:0 auto">
+
+    <div class="page-title">Leads · Fernanda</div>
+    <div class="page-sub" id="fernanda-last-updated">Cargando datos...</div>
+
+    <div class="metrics">
+      <div class="metric blue">
+        <div class="metric-label">Total leads</div>
+        <div class="metric-value" id="f-total">—</div>
+        <div class="metric-sub">registrados</div>
+      </div>
+      <div class="metric amber">
+        <div class="metric-label">Urgencia pronto</div>
+        <div class="metric-value" id="f-urgentes">—</div>
+        <div class="metric-sub">quieren implementar ya</div>
+      </div>
+      <div class="metric green">
+        <div class="metric-label">Demo enviado</div>
+        <div class="metric-value" id="f-demo">—</div>
+        <div class="metric-sub">ya vieron el demo</div>
+      </div>
+      <div class="metric purple">
+        <div class="metric-label">Notificados</div>
+        <div class="metric-value" id="f-notificados">—</div>
+        <div class="metric-sub">equipo alertado</div>
+      </div>
+      <div class="metric glow">
+        <div class="metric-label">Hoy</div>
+        <div class="metric-value" id="f-hoy">—</div>
+        <div class="metric-sub">leads nuevos hoy</div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-header">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--glow);display:flex;align-items:center;gap:.75rem">
+          <span style="width:20px;height:1px;background:var(--glow);display:inline-block"></span>
+          Leads calificados
+        </div>
+        <div class="table-count" id="f-table-count">—</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Teléfono</th>
+              <th>Nombre</th>
+              <th>Negocio</th>
+              <th>Volumen/día</th>
+              <th>Urgencia</th>
+              <th>Demo</th>
+              <th>Estado</th>
+              <th>Notificado</th>
+              <th>Último contacto</th>
+              <th>Registro</th>
+            </tr>
+          </thead>
+          <tbody id="leads-table">
+            <tr><td colspan="10" class="empty-state">Cargando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -327,6 +404,99 @@ function renderTable(data) {
       <td style="font-size:10px">${fmtShort(d.updated_at)}</td>
       <td style="font-size:10px">${fmtShort(d.created_at)}</td>
     </tr>`;
+  }).join('');
+}
+
+// Tab switching
+function switchTab(tab) {
+  document.getElementById('view-lucia').style.display =
+    tab === 'lucia' ? 'block' : 'none';
+  document.getElementById('view-fernanda').style.display =
+    tab === 'fernanda' ? 'block' : 'none';
+  document.getElementById('tab-lucia').classList.toggle('active', tab === 'lucia');
+  document.getElementById('tab-fernanda').classList.toggle('active', tab === 'fernanda');
+  if (tab === 'fernanda') loadLeads();
+}
+
+// Cargar leads de Fernanda
+async function loadLeads() {
+  document.getElementById('fernanda-last-updated').textContent = 'Actualizando...';
+  try {
+    const { data, error } = await db
+      .from('leads_nervoxys')
+      .select('*')
+      .order('updated_at', { ascending: false });
+    if (error) throw error;
+    const leads = data || [];
+    renderLeadMetrics(leads);
+    renderLeadsTable(leads);
+    document.getElementById('fernanda-last-updated').textContent =
+      'Ultima actualizacion: ' + new Date().toLocaleString('es-CR');
+  } catch(e) {
+    document.getElementById('fernanda-last-updated').textContent =
+      'Error: ' + e.message;
+  }
+}
+
+// Metricas leads
+function renderLeadMetrics(data) {
+  const hoy = todayStart();
+  document.getElementById('f-total').textContent = data.length;
+  document.getElementById('f-urgentes').textContent =
+    data.filter(function(d) {
+      return d.urgencia &&
+        (d.urgencia.toLowerCase().indexOf('pronto') !== -1 ||
+         d.urgencia.toLowerCase().indexOf('mes') !== -1);
+    }).length;
+  document.getElementById('f-demo').textContent =
+    data.filter(function(d) { return d.demo_enviado === true; }).length;
+  document.getElementById('f-notificados').textContent =
+    data.filter(function(d) { return d.notificacion_enviada === true; }).length;
+  document.getElementById('f-hoy').textContent =
+    data.filter(function(d) { return d.created_at >= hoy; }).length;
+}
+
+// Tabla leads
+function renderLeadsTable(data) {
+  var tbody = document.getElementById('leads-table');
+  document.getElementById('f-table-count').textContent = data.length + ' leads';
+
+  if (data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="10" class="empty-state">No hay leads registrados</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = data.map(function(d) {
+    var fmtShort = function(dt) {
+      return dt ? new Date(dt).toLocaleDateString('es-CR',
+        {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) : '—';
+    };
+    var tel = d.telefono ? '...' + d.telefono.toString().slice(-6) : '—';
+
+    var urgenciaColor = function(u) {
+      if (!u) return 'var(--muted)';
+      var l = u.toLowerCase();
+      if (l.indexOf('pronto') !== -1 || l.indexOf('mes') !== -1) return 'var(--amber)';
+      if (l.indexOf('explor') !== -1) return 'var(--blue)';
+      return 'var(--muted)';
+    };
+
+    return '<tr>' +
+      '<td>' + tel + '</td>' +
+      '<td>' + (d.nombre || '—') + '</td>' +
+      '<td style="font-size:10px">' + (d.tipo_negocio || '—') + '</td>' +
+      '<td style="text-align:center">' + (d.volumen_mensajes || '—') + '</td>' +
+      '<td style="color:' + urgenciaColor(d.urgencia) + '">' + (d.urgencia || '—') + '</td>' +
+      '<td style="text-align:center">' + (d.demo_enviado ?
+        '<span class="badge completo">Si</span>' :
+        '<span style="color:var(--muted)">No</span>') + '</td>' +
+      '<td><span class="badge formato">' + (d.estado || 'nuevo') + '</span></td>' +
+      '<td style="text-align:center">' + (d.notificacion_enviada ?
+        '<span style="color:var(--green)">&#10003;</span>' :
+        '<span style="color:var(--muted)">—</span>') + '</td>' +
+      '<td style="font-size:10px">' + fmtShort(d.updated_at) + '</td>' +
+      '<td style="font-size:10px">' + fmtShort(d.created_at) + '</td>' +
+    '</tr>';
   }).join('');
 }
 
