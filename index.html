@@ -79,7 +79,7 @@ main{padding:2rem;max-width:1400px;margin:0 auto}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
 th{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
-td{font-family:var(--mono);font-size:11px;color:var(--text);padding:.85rem 1rem;border-bottom:1px solid rgba(0,170,255,.05)}
+td{font-family:var(--mono);font-size:11px;color:var(--text);padding:.85rem 1rem;border-bottom:1px solid rgba(0,170,255,.05);white-space:nowrap}
 tr:hover td{background:rgba(0,170,255,.03)}
 .badge{display:inline-block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:2px}
 .badge.completo{background:rgba(0,208,132,.1);color:var(--green);border:1px solid rgba(0,208,132,.2)}
@@ -400,7 +400,7 @@ function renderTable(data) {
   tbody.innerHTML = data.map(d => {
     const fmt = (dt) => dt ? new Date(dt).toLocaleDateString('es-MX', {day:'2-digit',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'}) : '—';
     const fmtShort = (dt) => dt ? new Date(dt).toLocaleDateString('es-MX', {day:'2-digit',month:'short'}) : '—';
-    const tel = d.telefono ? '⋯' + d.telefono.toString().slice(-6) : '—';
+    const tel = d.telefono || '—';
     const nombre = (d.perfil && d.perfil.nombre) ? d.perfil.nombre : '—';
     const tono = (d.perfil && d.perfil.tono) ? d.perfil.tono : '—';
     const step = d.onboarding_step ?? 0;
@@ -486,7 +486,7 @@ function renderLeadsTable(data) {
       return dt ? new Date(dt).toLocaleDateString('es-CR',
         {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) : '—';
     };
-    var tel = d.telefono ? '...' + d.telefono.toString().slice(-6) : '—';
+    var tel = d.telefono || '—';
 
     var urgenciaColor = function(u) {
       if (!u) return 'var(--muted)';
@@ -522,7 +522,7 @@ var currentChatTel = null;
 
 async function openChat(telefono, nombre) {
   currentChatTel = telefono;
-  document.getElementById('chat-tel').textContent = '...' + telefono.slice(-6);
+  document.getElementById('chat-tel').textContent = telefono;
   document.getElementById('chat-nombre').textContent = nombre || 'Sin nombre';
   document.getElementById('chat-panel').classList.add('open');
   document.getElementById('chat-messages').innerHTML =
